@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Real</title>
+
+    <link rel="stylesheet" href="/static/css/styles.css">
+
+</head>
+
+
+<body>
+ 
+    <form action="/process" method="GET" id="query" class="wrapper">
+        <img src="/static/images/google.png" height="200" width="370" class="image"/>
+        <input type="text" class="input" name="q" autofocus placeholder="Search">
+        <div class="button">
+            <button class="searchButton"><img src="/static/images/search.png" height="16" width="16"></button>
+        </div>
+    </form>
+    
+</body>
+
+<script>
+    document.getElementById("query").reset();
+</script>
+
+</html>
