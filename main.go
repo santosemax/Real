@@ -5,6 +5,8 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	"os"
+	"os/exec"
 )
 
 var port string = ":8080"
@@ -53,5 +55,9 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 			fmt.Fprintf(w, "%s\n", value)
 		}
 		// logic part here
+		cmd := exec.Command("./web/scrape.py")
+		cmd.Stdout = os.Stdout
+		cmd.Stderr = os.Stderr
+		log.Println(cmd.Run())
 	}
 }
