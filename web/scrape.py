@@ -49,7 +49,7 @@ c = conn.cursor()
 # Searching SQLite3 Tutorials (Have search terms from form be here)
 search_posts = reddit.subreddit('all').search("Learning SQLite3")
 index = 0
-limit = 10
+limit = 20
 results = {}
 # Load Results into a dictionary
 for post in search_posts:
@@ -60,13 +60,22 @@ for post in search_posts:
         break
 
 # Debug Line
-c.execute("DELETE FROM results")
+#c.execute("DELETE FROM results")
 
 c.execute("SELECT * FROM results")
+#print(c.fetchmany(10))
 
-print(c.fetchmany(10))
+#print(results)
 
-print(results)
+# Printing only keys
+keys = list(results.keys())
+counter = 0
+for item in keys:
+    print(item)
+    counter += 1
+print(f"\nThe number of items = {counter}")
+
+
 
 conn.commit()
 conn.close()
