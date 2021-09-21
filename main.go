@@ -72,11 +72,13 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 		cmd.Stderr = os.Stderr
 		log.Println(cmd.Run())
 
+		// DB STUFF
 		// Read Result.db's temporary data from Python File
 		rows, err := db.Query("SELECT * FROM results")
 		var title string
 		var body string
 
+		// Read the Rows
 		for rows.Next() {
 			err = rows.Scan(&title, &body)
 			checkErr(err)
@@ -87,10 +89,10 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 			}
 			fmt.Fprintf(w, "\n")
 		}
-
 		rows.Close()
 
 		// Delete Rows that we just used (Not sure if dev/production)
+		db.Exec("DELETE FROM results")
 
 		db.Close()
 	}

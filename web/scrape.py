@@ -1,5 +1,5 @@
 #!/usr/local/bin/python3
-import praw, configparser, sqlite3
+import praw, configparser, sqlite3, json
 from os import path
 
 
@@ -47,9 +47,10 @@ c = conn.cursor()
 
 
 # Searching SQLite3 Tutorials (Have search terms from form be here)
-search_posts = reddit.subreddit('all').search("Learning SQLite3")
+postLimit = 10
+search_posts = reddit.subreddit('all').search("Learning SQLite3", limit=postLimit)
 index = 0
-limit = 20
+limit = postLimit
 results = {}
 # Load Results into a dictionary
 for post in search_posts:
@@ -59,10 +60,7 @@ for post in search_posts:
     if index > limit:
         break
 
-# Debug Line
-#c.execute("DELETE FROM results")
-
-c.execute("SELECT * FROM results")
+#c.execute("SELECT * FROM results")
 #print(c.fetchmany(10))
 
 #print(results)
@@ -74,8 +72,6 @@ for item in keys:
     print(item)
     counter += 1
 print(f"\nThe number of items = {counter}")
-
-
 
 conn.commit()
 conn.close()
