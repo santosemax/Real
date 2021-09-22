@@ -61,6 +61,18 @@ body{
     align-items: center;
 }
 
+.logoText {
+    font-family: "Times New Roman";
+    font-size: 122px;
+    display: block;
+    position: absolute;
+    top: 37.5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box; 
+    padding-bottom: 10px;
+} 
+
 ::placeholder {
     font-size: 16px;
 }
