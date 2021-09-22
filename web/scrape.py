@@ -39,7 +39,8 @@ class RedditResults:
 # DB init
 conn = sqlite3.connect('results.db')
 c = conn.cursor()
-# Create Table
+
+# Create Table (Not needed after one run)
 #c.execute("""CREATE TABLE results (
 #            title text,
 #            body text
