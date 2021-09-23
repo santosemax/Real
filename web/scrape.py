@@ -19,41 +19,19 @@ reddit = praw.Reddit(
     user_agent=agent,
 )
 
-# Reddit Class
-class RedditResults:
-    """Handles the results from Reddit API"""
-
-    def __init__(self, title, body):
-        self.title = title
-        self.body = body
-
-    @property
-    def complete(self):
-        return '{} -*-*-*- {}'.format(self.title, self.body)
-
-    def __repr__(self):
-        return "Result('{}', '{}')".format(self.first, self.last)
-
-
-
 # DB init
 conn = sqlite3.connect('results.db')
 c = conn.cursor()
 
-# Create Table (Not needed after one run)
-#c.execute("""CREATE TABLE results (
-#            title text,
-#            body text
-#            )""")
-
-
-# Searching SQLite3 Tutorials (Have search terms from form be here)
+# Searching reddit using query (from db)
+search = ""
+for (query,) in c.execute("SELECT query FROM queryQ"):
+    search = query
 postLimit = 10
-search_posts = reddit.subreddit('all').search("Learning SQLite3", limit=postLimit)
+search_posts = reddit.subreddit('all').search(search, limit=postLimit)
 index = 0
 limit = postLimit
 results = {}
-# Load Results into a dictionary
 for post in search_posts:
     results[post.title] = post.selftext
     c.execute("INSERT INTO results VALUES (?, ?)", (post.title, post.selftext))
@@ -66,7 +44,8 @@ for post in search_posts:
 
 #print(results)
 
-# Printing only keys
+
+# Printing only keys (FOR DEBUG)
 keys = list(results.keys())
 counter = 0
 for item in keys:
