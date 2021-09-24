@@ -27,7 +27,7 @@ c = conn.cursor()
 search = ""
 for (query,) in c.execute("SELECT query FROM queryQ"):
     search = query
-postLimit = 10
+postLimit = 11
 search_posts = reddit.subreddit('all').search(search, limit=postLimit)
 index = 0
 limit = postLimit
@@ -51,7 +51,7 @@ counter = 0
 for item in keys:
     print(item)
     counter += 1
-print(f"\nThe number of items = {counter}")
+print(f"The number of items = {counter} \n\n")
 
 conn.commit()
 conn.close()

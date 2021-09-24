@@ -22,6 +22,12 @@ type Page struct {
 	Body  string
 }
 
+type Results struct {
+	PageTitle   string
+	resultTitle []string
+	resultBody  []string
+}
+
 func main() {
 	http.HandleFunc("/", homeHandler)
 	http.HandleFunc("/process", searchHandler)
@@ -46,8 +52,21 @@ func homeHandler(w http.ResponseWriter, r *http.Request) {
 	t.Execute(w, t)
 }
 
-// handles search results
+// handles search results (NEED TO GET VARIABLES TO PAGE USING EXECUTE)
 func searchHandler(w http.ResponseWriter, r *http.Request) {
+
+	// Render Page
+	t, err := template.ParseFiles("templates/results.html")
+	if err != nil {
+		// Redirect if not a real page
+		http.Redirect(w, r, "/", http.StatusFound)
+		fmt.Fprintf(w, "Error")
+	}
+
+	var val string
+	var titles []string
+	var bodies []string
+	var results Results
 
 	// Initialize DB
 	db, err := sql.Open("sqlite3", "./results.db")
@@ -69,7 +88,7 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 			fmt.Printf("%s = %s\n", key, value)
 
 			// Put query request into queryQ table
-			val := strings.Join(value, "")
+			val = strings.Join(value, "")
 			statement, err = db.Prepare("INSERT INTO queryQ (query) VALUES (?)")
 			statement.Exec(fmt.Sprint(val))
 			checkErr(err)
@@ -91,37 +110,30 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 		var body string
 
 		// Read the Rows
-		//var page Page
-		var pagesSlice []Page
 		for rows.Next() {
 
 			// Read rows and output to html page
 			err := rows.Scan(&title, &body)
 			checkErr(err)
-			pagesSlice = append(pagesSlice, Page{Title: title, Body: body})
+			titles = append(titles, title)
+			bodies = append(bodies, body)
 
-			// Debug results
-			//err = rows.Scan(&title, &body)
-			//checkErr(err)
-			//fmt.Fprintf(w, "\n%s", title)
-			//fmt.Fprintf(w, "\n%s\n", body)
-			//for i := 0; i < 70; i++ {
-			//	fmt.Fprintf(w, "-")
-			//}
-			//fmt.Fprintf(w, "\n")
 		}
 		rows.Close()
 
-		// Printing Row Titles
-		for i := 0; i < len(pagesSlice); i++ {
-			fmt.Fprintf(w, "\n\n%s", pagesSlice[i].Title)
-		}
-
-		// Delete Rows that we just used (Not sure if dev/production)
+		// Delete Rows and close db
 		db.Exec("DELETE FROM results")
 		db.Exec("DELETE FROM queryQ")
-
 		db.Close()
+
+		// Have Struct to pass in Result Title and Bodies
+		results.PageTitle = val
+		results.resultTitle = titles
+		results.resultBody = bodies
+		fmt.Println(results)
+
+		// EXECUTE TEMPLATE HERE WITH STATIC VARIABLES
+		t.Execute(w, results)
 	}
 }
 
