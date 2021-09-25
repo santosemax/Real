@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{.Title}} - real Search</title>
+
+</head>
+
+
+<body>
+
+    <h1>RESULTS:</h1>
+
+    {{with $n := index .PageResults 0}}
+        {{ $n.ResultTitle }}
+        <br><br>
+        {{ $n.ResultBody }}
+        <p>------------------------------</p>
+    {{ end }}
+
+    {{with $n := index .PageResults 1}}
+        {{ $n.ResultTitle }}
+        <br><br>
+        {{ $n.ResultBody }}
+        <p>------------------------------</p>
+    {{ end }}
+
+    {{with $n := index .PageResults 2}}
+        {{ $n.ResultTitle }}
+        <br><br>
+        {{ $n.ResultBody }}
+        <p>------------------------------</p>
+    {{ end }}
+
+     {{with $n := index .PageResults 3}}
+        {{ $n.ResultTitle }}
+        <br><br>
+        {{ $n.ResultBody }}
+        <p>------------------------------</p>
+    {{ end }}
+   
+    {{with $n := index .PageResults 4}}
+        {{ $n.ResultTitle }}
+        <br><br>
+        {{ $n.ResultBody }}
+        <p>------------------------------</p>
+    {{ end }}
+
+    {{with $n := index .PageResults 5}}
+        {{ $n.ResultTitle }}
+        <br><br>
+        {{ $n.ResultBody }}
+        <p>------------------------------</p>
+    {{ end }}
+
+    {{with $n := index .PageResults 6}}
+        {{ $n.ResultTitle }}
+        <br><br>
+        {{ $n.ResultBody }}
+        <p>------------------------------</p>
+    {{ end }}
+
+    {{with $n := index .PageResults 7}}
+        {{ $n.ResultTitle }}
+        <br><br>
+        {{ $n.ResultBody }}
+        <p>------------------------------</p>
+    {{ end }}
+
+    {{with $n := index .PageResults 8}}
+        {{ $n.ResultTitle }}
+        <br><br>
+        {{ $n.ResultBody }}
+        <p>------------------------------</p>
+    {{ end }}
+
+    {{with $n := index .PageResults 9}}
+        {{ $n.ResultTitle }}
+        <br><br>
+        {{ $n.ResultBody }}
+        <p>------------------------------</p>
+    {{ end }}
+
+
+    <!-- 
+    {{range .}}
+        {{range .PageResults}}
+            <p>{{.}}</p>
+        {{end}}
+    {{end}}
+    -->
+
+</body>
+
+<script>
+
+    // Repeating the body
+    //function multiplyNode(node, count, deep) {
+    //    for (var i = 0, copy; i < count - 1; i++) {
+    //        copy = node.cloneNode(deep);
+    //        node.parentNode.insertBefore(copy, node);
+    //    }
+    //}
+
+    //multiplyNode(document.querySelector('.Body'), 10, true);
+
+</script>
+
+</html>
