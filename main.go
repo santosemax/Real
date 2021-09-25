@@ -14,6 +14,7 @@ var port string = ":8080"
 var templates = template.Must(template.ParseFiles("templates/index.html"))
 
 func main() {
+	// Page Handlers
 	http.HandleFunc("/", handlers.HomeHandler)
 	http.HandleFunc("/process", handlers.SearchHandler)
 

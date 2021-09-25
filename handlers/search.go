@@ -21,6 +21,8 @@ type Page struct {
 type Results struct {
 	ResultTitle string
 	ResultBody  string
+	ResultURL   string
+	ResultSub   string
 }
 
 // handles search results
@@ -45,7 +47,7 @@ func SearchHandler(w http.ResponseWriter, r *http.Request) {
 	// Create Tables (if needed)
 	statement, _ := db.Prepare("CREATE TABLE IF NOT EXISTS queryQ (query text)")
 	statement.Exec()
-	statement, _ = db.Prepare("CREATE TABLE IF NOT EXISTS results (title text, body text)")
+	statement, _ = db.Prepare("CREATE TABLE IF NOT EXISTS results (title text, body text, url text, subreddit text)")
 	statement.Exec()
 
 	fmt.Println("method:", r.Method) // console shows method
@@ -78,15 +80,23 @@ func SearchHandler(w http.ResponseWriter, r *http.Request) {
 		checkErr(err)
 		var title string
 		var body string
+		var url string
+		var subreddit string
 
 		// Read the Rows
 		for rows.Next() {
 
 			// Read rows and output to html page
-			err := rows.Scan(&title, &body)
+			err := rows.Scan(&title, &body, &url, &subreddit)
 			checkErr(err)
 
-			results = append(results, Results{ResultTitle: title, ResultBody: body})
+			results = append(results,
+				Results{
+					ResultTitle: title,
+					ResultBody:  body,
+					ResultURL:   url,
+					ResultSub:   subreddit,
+				})
 
 		}
 		rows.Close()

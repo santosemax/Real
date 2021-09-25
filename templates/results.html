@@ -8,101 +8,146 @@
 
 
 <body>
+    <h1>real.</h1>
 
-    <h1>RESULTS:</h1>
-
-    {{with $n := index .PageResults 0}}
-        {{ $n.ResultTitle }}
-        <br><br>
-        {{ $n.ResultBody }}
-        <p>------------------------------</p>
-    {{ end }}
-
-    {{with $n := index .PageResults 1}}
-        {{ $n.ResultTitle }}
-        <br><br>
-        {{ $n.ResultBody }}
-        <p>------------------------------</p>
-    {{ end }}
-
-    {{with $n := index .PageResults 2}}
-        {{ $n.ResultTitle }}
-        <br><br>
-        {{ $n.ResultBody }}
-        <p>------------------------------</p>
-    {{ end }}
-
-     {{with $n := index .PageResults 3}}
-        {{ $n.ResultTitle }}
-        <br><br>
-        {{ $n.ResultBody }}
-        <p>------------------------------</p>
-    {{ end }}
-   
-    {{with $n := index .PageResults 4}}
-        {{ $n.ResultTitle }}
-        <br><br>
-        {{ $n.ResultBody }}
-        <p>------------------------------</p>
-    {{ end }}
-
-    {{with $n := index .PageResults 5}}
-        {{ $n.ResultTitle }}
-        <br><br>
-        {{ $n.ResultBody }}
-        <p>------------------------------</p>
-    {{ end }}
-
-    {{with $n := index .PageResults 6}}
-        {{ $n.ResultTitle }}
-        <br><br>
-        {{ $n.ResultBody }}
-        <p>------------------------------</p>
-    {{ end }}
-
-    {{with $n := index .PageResults 7}}
-        {{ $n.ResultTitle }}
-        <br><br>
-        {{ $n.ResultBody }}
-        <p>------------------------------</p>
-    {{ end }}
-
-    {{with $n := index .PageResults 8}}
-        {{ $n.ResultTitle }}
-        <br><br>
-        {{ $n.ResultBody }}
-        <p>------------------------------</p>
-    {{ end }}
-
-    {{with $n := index .PageResults 9}}
-        {{ $n.ResultTitle }}
-        <br><br>
-        {{ $n.ResultBody }}
-        <p>------------------------------</p>
-    {{ end }}
+    <h3>Here are your results:</h3>
 
 
-    <!-- 
-    {{range .}}
-        {{range .PageResults}}
-            <p>{{.}}</p>
-        {{end}}
-    {{end}}
-    -->
+    <br>
+    <br>
+    <br>
+
+
+    <!-- Results -->
+    <div>
+        {{with $n := index .PageResults 0}}
+            {{ $n.ResultTitle }}
+            <br><br>
+            <a href={{$n.ResultURL}}>reddit.com/r/{{ .ResultSub }}</a>
+            <br><br>
+            {{ $n.ResultBody }}
+            <p>------------------------------</p>
+        {{ end }}
+    </div>
+
+    <div>
+        {{with $n := index .PageResults 1}}
+            {{ $n.ResultTitle }}
+            <br><br>
+            <a href={{$n.ResultURL}}>reddit.com/r/{{ .ResultSub }}</a>
+            <br><br>
+            {{ $n.ResultBody }}
+            <p>------------------------------</p>
+        {{ end }}
+    </div>
+
+
+    <div>
+        {{with $n := index .PageResults 2}}
+            {{ $n.ResultTitle }}
+            <br><br>
+            <a href={{$n.ResultURL}}>reddit.com/r/{{ .ResultSub }}</a>
+            <br><br>
+            {{ $n.ResultBody }}
+            <p>------------------------------</p>
+        {{ end }}
+    </div>
+
+
+    <div>
+        {{with $n := index .PageResults 3}}
+            {{ $n.ResultTitle }}
+            <br><br>
+            <a href={{$n.ResultURL}}>reddit.com/r/{{ .ResultSub }}</a>
+            <br><br>
+            {{ $n.ResultBody }}
+            <p>------------------------------</p>
+        {{ end }}
+    </div>
+
+    <div>
+        {{with $n := index .PageResults 4}}
+            {{ $n.ResultTitle }}
+            <br><br>
+            <a href={{$n.ResultURL}}>reddit.com/r/{{ .ResultSub }}</a>
+            <br><br>
+            {{ $n.ResultBody }}
+            <p>------------------------------</p>
+        {{ end }}
+    </div>
+
+    <div>
+        {{with $n := index .PageResults 5}}
+            {{ $n.ResultTitle }}
+            <br><br>
+            <a href={{$n.ResultURL}}>reddit.com/r/{{ .ResultSub }}</a>
+            <br><br>
+            {{ $n.ResultBody }}
+            <p>------------------------------</p>
+        {{ end }}
+    </div>
+
+    <div>
+        {{with $n := index .PageResults 6}}
+            {{ $n.ResultTitle }}
+            <br><br>
+            <a href={{$n.ResultURL}}>reddit.com/r/{{ .ResultSub }}</a>
+            <br><br>
+            {{ $n.ResultBody }}
+            <p>------------------------------</p>
+        {{ end }}
+    </div>
+
+    <div>
+        {{with $n := index .PageResults 7}}
+            {{ $n.ResultTitle }}
+            <br><br>
+            <a href={{$n.ResultURL}}>reddit.com/r/{{ .ResultSub }}</a>
+            <br><br>
+            {{ $n.ResultBody }}
+            <p>------------------------------</p>
+        {{ end }}
+    </div>
+
+    <div>
+        {{with $n := index .PageResults 8}}
+            {{ $n.ResultTitle }}
+            <br><br>
+            <a href={{$n.ResultURL}}>reddit.com/r/{{ .ResultSub }}</a>
+            <br><br>
+            {{ $n.ResultBody }}
+            <p>------------------------------</p>
+        {{ end }}
+    </div>
+
+    <div>
+        {{with $n := index .PageResults 9}}
+            {{ $n.ResultTitle }}
+            <br><br>
+            <a href={{$n.ResultURL}}>reddit.com/r/{{ .ResultSub }}</a>
+            <br><br>
+            {{ $n.ResultBody }}
+            <p>------------------------------</p>
+        {{ end }}
+    </div>
+
+
+
 
 </body>
 
 <script>
 
-    // Repeating the body
-    //function multiplyNode(node, count, deep) {
-    //    for (var i = 0, copy; i < count - 1; i++) {
-    //        copy = node.cloneNode(deep);
-    //        node.parentNode.insertBefore(copy, node);
-    //    }
-    //}
+    // Repeating the body class
+    function multiplyNode(node, count, deep) {
+        for (var i = 0, copy; i < count - 1; i++) {
+            copy = node.cloneNode(deep);
+            node.parentNode.insertBefore(copy, node);
+        }
+    }
 
-    //multiplyNode(document.querySelector('.Body'), 10, true);
+    multiplyNode(document.querySelector('.Body'), 10, true);
+
 
 </script>
 

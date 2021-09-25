@@ -27,14 +27,14 @@ c = conn.cursor()
 search = ""
 for (query,) in c.execute("SELECT query FROM queryQ"):
     search = query
-postLimit = 11
+postLimit = 10
 search_posts = reddit.subreddit('all').search(search, limit=postLimit)
 index = 0
 limit = postLimit
 results = {}
 for post in search_posts:
     results[post.title] = post.selftext
-    c.execute("INSERT INTO results VALUES (?, ?)", (post.title, post.selftext))
+    c.execute("INSERT INTO results VALUES (?, ?, ?, ?)", (post.title, post.selftext, post.url, str(post.subreddit)))
     index += 1 
     if index > limit:
         break
