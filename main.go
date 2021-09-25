@@ -16,16 +16,16 @@ import (
 var port string = ":8080"
 var templates = template.Must(template.ParseFiles("templates/index.html"))
 
-// Should use a struct for handling results on a page
+// Overall Page Data
 type Page struct {
-	Title string
-	Body  string
+	Title       string
+	PageResults []Results
 }
 
+// Storing Results
 type Results struct {
-	PageTitle   string
-	resultTitle []string
-	resultBody  []string
+	ResultTitle string
+	ResultBody  string
 }
 
 func main() {
@@ -64,9 +64,8 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var val string
-	var titles []string
-	var bodies []string
-	var results Results
+	var page Page
+	var results []Results
 
 	// Initialize DB
 	db, err := sql.Open("sqlite3", "./results.db")
@@ -115,8 +114,8 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 			// Read rows and output to html page
 			err := rows.Scan(&title, &body)
 			checkErr(err)
-			titles = append(titles, title)
-			bodies = append(bodies, body)
+
+			results = append(results, Results{ResultTitle: title, ResultBody: body})
 
 		}
 		rows.Close()
@@ -124,17 +123,17 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 		// Delete Rows and close db
 		db.Exec("DELETE FROM results")
 		db.Exec("DELETE FROM queryQ")
+
 		db.Close()
-
-		// Have Struct to pass in Result Title and Bodies
-		results.PageTitle = val
-		results.resultTitle = titles
-		results.resultBody = bodies
-		fmt.Println(results)
-
-		// EXECUTE TEMPLATE HERE WITH STATIC VARIABLES
-		t.Execute(w, results)
 	}
+
+	// Fill out Page
+	page.Title = val
+	page.PageResults = results
+
+	// EXECUTE TEMPLATE HERE WITH STATIC VARIABLES
+	t.Execute(w, page)
+
 }
 
 // Check DB for errors
