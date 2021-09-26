@@ -1,5 +1,6 @@
-# Reddit Bot Info
+# Bot Info
 *.ini
+botConfigs/
 
 # Ignore Mac DS_Store files
 .DS_Store

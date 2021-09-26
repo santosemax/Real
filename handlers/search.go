@@ -71,7 +71,7 @@ func SearchHandler(w http.ResponseWriter, r *http.Request) {
 		// SEARCH LOGIC STARTS HERE (Python->DB->GO)
 
 		// Run Python Scraper (REDDIT)
-		cmd := exec.Command("./web/scrape.py")
+		cmd := exec.Command("./web/reddit.py")
 		cmd.Stdout = os.Stdout
 		cmd.Stderr = os.Stderr
 		log.Println(cmd.Run())

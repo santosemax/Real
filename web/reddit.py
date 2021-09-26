@@ -1,5 +1,5 @@
 #!/usr/local/bin/python3
-import praw, configparser, sqlite3, json
+import praw, configparser, sqlite3
 from os import path
 
 
