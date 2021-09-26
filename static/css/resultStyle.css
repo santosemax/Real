@@ -65,7 +65,8 @@
     position: relative;
     font-family: "Georgia";
     padding-left: 105px;
-    width: 50%;
+    display: inline-block;
+    max-width: 750px;
     word-wrap: normal;
 }
 

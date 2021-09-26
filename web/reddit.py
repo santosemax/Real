@@ -4,11 +4,8 @@ from os import path
 
 
 # Reddit config
-basepath = path.dirname(__file__)
-filepath = path.abspath(path.join(basepath, "..", "redditBot.ini"))
-
 Config = configparser.ConfigParser()
-Config.read(filepath)
+Config.read("./botConfigs/redditBot.ini")
 client = Config['reddit']['client']
 secret = Config['reddit']['secret']
 agent = Config['reddit']['agent']
