@@ -4,133 +4,147 @@
     <meta charset="UTF-8">
     <title>{{.Title}} - real Search</title>
 
+
+    <link rel="stylesheet" href="/static/css/resultStyle.css">
+
 </head>
 
 
 <body>
-    <h1>real.</h1>
 
-    <h3>Here are your results:</h3>
+    <!-- Logo -->
+    <div class="logo">
+        <p>real<span style=color:#FF7B55>.</span></p>
+    </div>
 
+
+    <!-- Form Bar Here -->
+    <form action="/process" method="GET" id="query" class="wrapper">
+        <input type="text" class="input" name="q" autocomplete="off" autofocus placeholder="Search">
+        <div class="button">
+            <button class="searchButton"><img src="/static/images/search.png" height="16" width="16"></button>
+        </div>
+    </form>
 
     <br>
     <br>
-    <br>
-
 
     <!-- Results -->
-    <div>
-        {{with $n := index .PageResults 0}}
-            {{ $n.ResultTitle }}
-            <br><br>
-            <a href={{$n.ResultURL}}>reddit.com/r/{{ .ResultSub }}</a>
-            <br><br>
-            {{ $n.ResultBody }}
-            <p>------------------------------</p>
-        {{ end }}
+    <div class="results">
+        <h3>Here are your results sorted by relevance:</h3>
+
+        <div>
+            {{with $n := index .PageResults 0}}
+                {{ $n.ResultTitle }}
+                <br><br>
+                <a href={{$n.ResultURL}}>reddit.com/r/{{ .ResultSub }}</a>
+                <br><br>
+                {{ $n.ResultBody }}
+                <p>------------------------------</p>
+            {{ end }}
+        </div>
+
+        <div>
+            {{with $n := index .PageResults 1}}
+                {{ $n.ResultTitle }}
+                <br><br>
+                <a href={{$n.ResultURL}}>reddit.com/r/{{ .ResultSub }}</a>
+                <br><br>
+                {{ $n.ResultBody }}
+                <p>------------------------------</p>
+            {{ end }}
+        </div>
+
+
+        <div>
+            {{with $n := index .PageResults 2}}
+                {{ $n.ResultTitle }}
+                <br><br>
+                <a href={{$n.ResultURL}}>reddit.com/r/{{ .ResultSub }}</a>
+                <br><br>
+                {{ $n.ResultBody }}
+                <p>------------------------------</p>
+            {{ end }}
+        </div>
+
+
+        <div>
+            {{with $n := index .PageResults 3}}
+                {{ $n.ResultTitle }}
+                <br><br>
+                <a href={{$n.ResultURL}}>reddit.com/r/{{ .ResultSub }}</a>
+                <br><br>
+                {{ $n.ResultBody }}
+                <p>------------------------------</p>
+            {{ end }}
+        </div>
+
+        <div>
+            {{with $n := index .PageResults 4}}
+                {{ $n.ResultTitle }}
+                <br><br>
+                <a href={{$n.ResultURL}}>reddit.com/r/{{ .ResultSub }}</a>
+                <br><br>
+                {{ $n.ResultBody }}
+                <p>------------------------------</p>
+            {{ end }}
+        </div>
+
+        <div>
+            {{with $n := index .PageResults 5}}
+                {{ $n.ResultTitle }}
+                <br><br>
+                <a href={{$n.ResultURL}}>reddit.com/r/{{ .ResultSub }}</a>
+                <br><br>
+                {{ $n.ResultBody }}
+                <p>------------------------------</p>
+            {{ end }}
+        </div>
+
+        <div>
+            {{with $n := index .PageResults 6}}
+                {{ $n.ResultTitle }}
+                <br><br>
+                <a href={{$n.ResultURL}}>reddit.com/r/{{ .ResultSub }}</a>
+                <br><br>
+                {{ $n.ResultBody }}
+                <p>------------------------------</p>
+            {{ end }}
+        </div>
+
+        <div>
+            {{with $n := index .PageResults 7}}
+                {{ $n.ResultTitle }}
+                <br><br>
+                <a href={{$n.ResultURL}}>reddit.com/r/{{ .ResultSub }}</a>
+                <br><br>
+                {{ $n.ResultBody }}
+                <p>------------------------------</p>
+            {{ end }}
+        </div>
+
+        <div>
+            {{with $n := index .PageResults 8}}
+                {{ $n.ResultTitle }}
+                <br><br>
+                <a href={{$n.ResultURL}}>reddit.com/r/{{ .ResultSub }}</a>
+                <br><br>
+                {{ $n.ResultBody }}
+                <p>------------------------------</p>
+            {{ end }}
+        </div>
+
+        <div>
+            {{with $n := index .PageResults 9}}
+                {{ $n.ResultTitle }}
+                <br><br>
+                <a href={{$n.ResultURL}}>reddit.com/r/{{ .ResultSub }}</a>
+                <br><br>
+                {{ $n.ResultBody }}
+                <p>------------------------------</p>
+            {{ end }}
+        </div>
     </div>
-
-    <div>
-        {{with $n := index .PageResults 1}}
-            {{ $n.ResultTitle }}
-            <br><br>
-            <a href={{$n.ResultURL}}>reddit.com/r/{{ .ResultSub }}</a>
-            <br><br>
-            {{ $n.ResultBody }}
-            <p>------------------------------</p>
-        {{ end }}
-    </div>
-
-
-    <div>
-        {{with $n := index .PageResults 2}}
-            {{ $n.ResultTitle }}
-            <br><br>
-            <a href={{$n.ResultURL}}>reddit.com/r/{{ .ResultSub }}</a>
-            <br><br>
-            {{ $n.ResultBody }}
-            <p>------------------------------</p>
-        {{ end }}
-    </div>
-
-
-    <div>
-        {{with $n := index .PageResults 3}}
-            {{ $n.ResultTitle }}
-            <br><br>
-            <a href={{$n.ResultURL}}>reddit.com/r/{{ .ResultSub }}</a>
-            <br><br>
-            {{ $n.ResultBody }}
-            <p>------------------------------</p>
-        {{ end }}
-    </div>
-
-    <div>
-        {{with $n := index .PageResults 4}}
-            {{ $n.ResultTitle }}
-            <br><br>
-            <a href={{$n.ResultURL}}>reddit.com/r/{{ .ResultSub }}</a>
-            <br><br>
-            {{ $n.ResultBody }}
-            <p>------------------------------</p>
-        {{ end }}
-    </div>
-
-    <div>
-        {{with $n := index .PageResults 5}}
-            {{ $n.ResultTitle }}
-            <br><br>
-            <a href={{$n.ResultURL}}>reddit.com/r/{{ .ResultSub }}</a>
-            <br><br>
-            {{ $n.ResultBody }}
-            <p>------------------------------</p>
-        {{ end }}
-    </div>
-
-    <div>
-        {{with $n := index .PageResults 6}}
-            {{ $n.ResultTitle }}
-            <br><br>
-            <a href={{$n.ResultURL}}>reddit.com/r/{{ .ResultSub }}</a>
-            <br><br>
-            {{ $n.ResultBody }}
-            <p>------------------------------</p>
-        {{ end }}
-    </div>
-
-    <div>
-        {{with $n := index .PageResults 7}}
-            {{ $n.ResultTitle }}
-            <br><br>
-            <a href={{$n.ResultURL}}>reddit.com/r/{{ .ResultSub }}</a>
-            <br><br>
-            {{ $n.ResultBody }}
-            <p>------------------------------</p>
-        {{ end }}
-    </div>
-
-    <div>
-        {{with $n := index .PageResults 8}}
-            {{ $n.ResultTitle }}
-            <br><br>
-            <a href={{$n.ResultURL}}>reddit.com/r/{{ .ResultSub }}</a>
-            <br><br>
-            {{ $n.ResultBody }}
-            <p>------------------------------</p>
-        {{ end }}
-    </div>
-
-    <div>
-        {{with $n := index .PageResults 9}}
-            {{ $n.ResultTitle }}
-            <br><br>
-            <a href={{$n.ResultURL}}>reddit.com/r/{{ .ResultSub }}</a>
-            <br><br>
-            {{ $n.ResultBody }}
-            <p>------------------------------</p>
-        {{ end }}
-    </div>
-
 
 
 
