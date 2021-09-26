@@ -63,7 +63,13 @@
 
 .results {
     position: relative;
+    font-family: "Georgia";
     padding-left: 105px;
+    width: 50%;
     word-wrap: normal;
 }
 
+.subreddit {
+    font-weight: bold;
+    color: #FF4500;
+}

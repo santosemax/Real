@@ -19,10 +19,12 @@ type Page struct {
 
 // Storing Results (ADD URL SECTION)
 type Results struct {
-	ResultTitle string
-	ResultBody  string
-	ResultURL   string
-	ResultSub   string
+	ResultTitle     string
+	ResultBody      string
+	ResultURL       string
+	ResultSub       string
+	ResultPermalink string
+	hasContent      bool
 }
 
 // handles search results
@@ -47,7 +49,7 @@ func SearchHandler(w http.ResponseWriter, r *http.Request) {
 	// Create Tables (if needed)
 	statement, _ := db.Prepare("CREATE TABLE IF NOT EXISTS queryQ (query text)")
 	statement.Exec()
-	statement, _ = db.Prepare("CREATE TABLE IF NOT EXISTS results (title text, body text, url text, subreddit text)")
+	statement, _ = db.Prepare("CREATE TABLE IF NOT EXISTS results (title text, body text, url text, subreddit text, permalink text)")
 	statement.Exec()
 
 	fmt.Println("method:", r.Method) // console shows method
@@ -82,20 +84,30 @@ func SearchHandler(w http.ResponseWriter, r *http.Request) {
 		var body string
 		var url string
 		var subreddit string
+		var permalink string
+		var content bool
 
 		// Read the Rows
 		for rows.Next() {
 
 			// Read rows and output to html page
-			err := rows.Scan(&title, &body, &url, &subreddit)
+			err := rows.Scan(&title, &body, &url, &subreddit, &permalink)
 			checkErr(err)
+
+			if body == "Click to see video.image" {
+				content = true
+			} else {
+				content = false
+			}
 
 			results = append(results,
 				Results{
-					ResultTitle: title,
-					ResultBody:  body,
-					ResultURL:   url,
-					ResultSub:   subreddit,
+					ResultTitle:     title,
+					ResultBody:      body,
+					ResultURL:       url,
+					ResultSub:       subreddit,
+					ResultPermalink: permalink,
+					hasContent:      content,
 				})
 
 		}

@@ -27,15 +27,31 @@ c = conn.cursor()
 search = ""
 for (query,) in c.execute("SELECT query FROM queryQ"):
     search = query
-postLimit = 10
+postLimit = 50 # How many results should the API search for?
 search_posts = reddit.subreddit('all').search(search, limit=postLimit)
 index = 0
-limit = postLimit
+limit = 10 # How many rows should you add?
 results = {}
 for post in search_posts:
     results[post.title] = post.selftext
-    c.execute("INSERT INTO results VALUES (?, ?, ?, ?)", (post.title, post.selftext, post.url, str(post.subreddit)))
-    index += 1 
+    if post.over_18 != True:
+        if post.selftext == "":
+            c.execute("INSERT INTO results VALUES (?, ?, ?, ?, ?)", (
+                post.title, 
+                "noCONTENT", 
+                post.url, 
+                str(post.subreddit), 
+                post.permalink)
+            )
+        else:
+            c.execute("INSERT INTO results VALUES (?, ?, ?, ?, ?)", (
+                post.title, 
+                post.selftext, 
+                post.url, 
+                str(post.subreddit), 
+                post.permalink)
+            )
+        index += 1 
     if index > limit:
         break
 
