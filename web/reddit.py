@@ -51,12 +51,6 @@ for post in search_posts:
     if index > limit:
         break
 
-#c.execute("SELECT * FROM results")
-#print(c.fetchmany(10))
-
-#print(results)
-
-
 # Printing only keys (FOR DEBUG)
 keys = list(results.keys())
 counter = 0

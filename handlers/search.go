@@ -3,10 +3,7 @@ package handlers
 import (
 	"database/sql"
 	"fmt"
-	"log"
 	"net/http"
-	"os"
-	"os/exec"
 	"strings"
 	"text/template"
 
@@ -15,8 +12,9 @@ import (
 
 // Overall Page Data
 type Page struct {
-	Title             string
-	PageRedditResults []data.RedditResults
+	Title              string
+	PageRedditResults  []data.RedditResults
+	PageTwitterResults []data.TwitterResults
 }
 
 // handles search results
@@ -64,16 +62,10 @@ func SearchHandler(w http.ResponseWriter, r *http.Request) {
 		}
 		// SEARCH LOGIC STARTS HERE (Python->DB->GO)
 
-		// Run Python Scraper (TWITTER)
-		cmd := exec.Command("./web/twitter.py")
-		cmd.Stdout = os.Stdout
-		cmd.Stderr = os.Stderr
-		log.Println(cmd.Run())
-
 		// Fill out Page (using 'data' handlers)
 		page.Title = val
 		page.PageRedditResults = data.RedditData(db) // Call reddit data here????
-		// page.PageTwitterResults = ???
+		page.PageTwitterResults = data.TwitterData(db)
 
 		// Delete Rows and close db
 		db.Exec("DELETE FROM redditQ")

@@ -11,12 +11,16 @@ consumer_secret = Config['twitter']['apiSecretKey']
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 api = tweepy.API(auth)
 
+# EXAMPLE
 for tweet in tweepy.Cursor(api.search_tweets, q='Ronaldo', lang='en', result_type='recent').items(10):
     print(tweet.text)
-
 
 # DB init
 conn = sqlite3.connect('results.db')
 c = conn.cursor()
 
 # Searching twitter using query (from db)
+search = ""
+for (query,) in c.execute("SELECT query FROM queryQ"):
+    search = query
+postLimit = 50 # How many results should the API search for?

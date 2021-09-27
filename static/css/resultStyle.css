@@ -53,12 +53,16 @@
 .logo {
     font-family: "Times New Roman";
     font-size: 45px;
-    color: #35363A;
     display: block;
     float: left;
     position: relative;
     box-sizing: border-box; 
     padding-bottom: 10px;
+}
+
+.logoLink {
+    color: inherit;
+    text-decoration: none;
 }
 
 .results {

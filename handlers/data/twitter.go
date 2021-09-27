@@ -1,6 +1,11 @@
 package data
 
-import "database/sql"
+import (
+	"database/sql"
+	"log"
+	"os"
+	"os/exec"
+)
 
 // Storing Twitter
 type TwitterResults struct {
@@ -12,7 +17,13 @@ func TwitterData(db *sql.DB) []TwitterResults {
 
 	var results []TwitterResults
 
-	// Code Here
+	// Run Python Scraper (TWITTER)
+	cmd := exec.Command("./web/twitter.py")
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+	log.Println(cmd.Run())
+
+	// More code here
 
 	return results
 }
