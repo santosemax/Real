@@ -35,7 +35,7 @@
         <h3>Here are your results sorted by relevance:</h3>
 
         <div>
-            {{range $n := .PageResults}}
+            {{range $n := .PageRedditResults}}
                 <a href=https://www.reddit.com{{ $n.ResultPermalink }}>{{ $n.ResultTitle }}</a>
                 <p class="subreddit">/r/{{ .ResultSub }}</p>
                 {{if eq $n.ResultBody "noCONTENT"}}

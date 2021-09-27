@@ -33,7 +33,7 @@ for post in search_posts:
     results[post.title] = post.selftext
     if post.over_18 != True:
         if post.selftext == "":
-            c.execute("INSERT INTO results VALUES (?, ?, ?, ?, ?)", (
+            c.execute("INSERT INTO redditQ VALUES (?, ?, ?, ?, ?)", (
                 post.title, 
                 "noCONTENT", 
                 post.url, 
@@ -41,7 +41,7 @@ for post in search_posts:
                 post.permalink)
             )
         else:
-            c.execute("INSERT INTO results VALUES (?, ?, ?, ?, ?)", (
+            c.execute("INSERT INTO redditQ VALUES (?, ?, ?, ?, ?)", (
                 post.title, 
                 post.selftext, 
                 post.url, 
