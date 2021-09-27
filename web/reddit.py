@@ -15,7 +15,6 @@ reddit = praw.Reddit(
     client_secret=secret,
     user_agent=agent,
 )
-
 # DB init
 conn = sqlite3.connect('results.db')
 c = conn.cursor()

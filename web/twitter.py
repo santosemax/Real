@@ -13,3 +13,10 @@ api = tweepy.API(auth)
 
 for tweet in tweepy.Cursor(api.search_tweets, q='Ronaldo', lang='en', result_type='recent').items(10):
     print(tweet.text)
+
+
+# DB init
+conn = sqlite3.connect('results.db')
+c = conn.cursor()
+
+# Searching twitter using query (from db)
