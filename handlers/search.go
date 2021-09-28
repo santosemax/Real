@@ -69,7 +69,7 @@ func SearchHandler(w http.ResponseWriter, r *http.Request) {
 
 		// Delete Rows and close db
 		db.Exec("DELETE FROM redditQ")
-		//db.Exec("DELETE FROM twitterQ")
+		db.Exec("DELETE FROM twitterQ")
 		db.Exec("DELETE FROM queryQ")
 
 		db.Close()
