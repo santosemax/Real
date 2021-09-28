@@ -9,8 +9,14 @@ import (
 
 // Storing Twitter
 type TwitterResults struct {
-	ResultTitle string
-	ResultBody  string
+	Username string
+	Handle   string
+	DatePub  string
+	Text     string
+	Comments int16
+	Retweets int16
+	Likes    int16
+	URL      string
 }
 
 func TwitterData(db *sql.DB) []TwitterResults {

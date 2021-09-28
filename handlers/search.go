@@ -40,7 +40,7 @@ func SearchHandler(w http.ResponseWriter, r *http.Request) {
 	statement.Exec()
 	statement, _ = db.Prepare("CREATE TABLE IF NOT EXISTS redditQ (title text, body text, url text, subreddit text, permalink text)")
 	statement.Exec()
-	statement, _ = db.Prepare("CREATE TABLE IF NOT EXISTS twitterQ (title text, body text, url text, subreddit text, permalink text)")
+	statement, _ = db.Prepare("CREATE TABLE IF NOT EXISTS twitterQ (username text, handle text, datepub text, text text, retweets integer, likes integer, url text)")
 	statement.Exec()
 
 	// Get Query from User
@@ -69,7 +69,7 @@ func SearchHandler(w http.ResponseWriter, r *http.Request) {
 
 		// Delete Rows and close db
 		db.Exec("DELETE FROM redditQ")
-		db.Exec("DELETE FROM twitterQ")
+		//db.Exec("DELETE FROM twitterQ")
 		db.Exec("DELETE FROM queryQ")
 
 		db.Close()
