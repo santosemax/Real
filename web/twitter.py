@@ -20,16 +20,16 @@ search = ""
 for (query,) in c.execute("SELECT query FROM queryQ"):
     search = f"{query} -filter:retweets"
 postLimit = 50 # How many results should the API search for?
-tweets = tweepy.Cursor(api.search_tweets, q=search, lang='en', result_type='popular', include_entities=True).items(20)
+tweets = tweepy.Cursor(api.search_tweets, q=search, lang='en', result_type='popular', include_entities=True, tweet_mode='extended').items(20)
 index = 0
 limit = 10 # How many rows should you add?
 results = {}
 for tweet in tweets:
-    results[tweet.user.name] = tweet.text
+    results[tweet.user.name] = tweet.full_text
     # Construct URL
     url = f"https://twitter.com/{tweet.user.screen_name}/status/{tweet.id}"
     if tweet.user.followers_count >= 30 and tweet.user.protected == False:
-        if tweet.text == "":
+        if tweet.full_text == "":
             c.execute("INSERT INTO twitterQ VALUES (?, ?, ?, ?, ?, ?, ?)", (
                 tweet.user.screen_name,
                 tweet.user.name,
@@ -44,7 +44,7 @@ for tweet in tweets:
                 tweet.user.screen_name,
                 tweet.user.name,
                 tweet.created_at,
-                re.sub(r'https://t.co/\w{10}', '', tweet.text),
+                re.sub(r'https://t.co/\w{10}', '', tweet.full_text),
                 tweet.retweet_count,
                 tweet.favorite_count,
                 url
