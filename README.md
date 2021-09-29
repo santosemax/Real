@@ -8,6 +8,7 @@ Checklist:
 - [x] = Web Scraping using Python3
 - [x] = Storing Web Scraping using SQLite
 - [x] = Implement scraping into webpages using Go
+- [ ] = Implement StackOverflow API
 
 
 Development started in August 2021, but many changes were lost and repository had to be recreated (about 50 commits gone)
