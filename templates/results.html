@@ -49,6 +49,23 @@
 
     </div>
 
+
+    <!-- Twitter Results -->
+    <div class="tweets">
+
+        <h3>Popular tweets about your search:</h3>
+        
+        <div>
+            {{range $t := .PageTwitterResults}}
+                <p>{{ $t.Text }}</p>
+            
+            {{end}}
+        </div>
+
+
+
+    </div>
+
 </body>
 
 <script>

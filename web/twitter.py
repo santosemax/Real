@@ -1,5 +1,5 @@
 #!/usr/local/bin/python3
-import tweepy, configparser, sqlite3
+import tweepy, configparser, sqlite3, re
 from os import path
 
 Config = configparser.ConfigParser()
@@ -18,9 +18,9 @@ c = conn.cursor()
 # Searching twitter using query (from db)
 search = ""
 for (query,) in c.execute("SELECT query FROM queryQ"):
-    search = query
+    search = f"{query} -filter:retweets"
 postLimit = 50 # How many results should the API search for?
-tweets = tweepy.Cursor(api.search_tweets, q=search, lang='en', result_type='recent', include_entities=True).items(10)
+tweets = tweepy.Cursor(api.search_tweets, q=search, lang='en', result_type='popular', include_entities=True).items(20)
 index = 0
 limit = 10 # How many rows should you add?
 results = {}
@@ -44,7 +44,7 @@ for tweet in tweets:
                 tweet.user.screen_name,
                 tweet.user.name,
                 tweet.created_at,
-                tweet.text,
+                re.sub(r'https://t.co/\w{10}', '', tweet.text),
                 tweet.retweet_count,
                 tweet.favorite_count,
                 url
