@@ -96,6 +96,26 @@
 }
 
 
+/* TWITTER USER LINK */
+.tUsername {
+    color: #30A8FB;
+    font-weight: bold;
+    float: left;
+}
+.tHandle {
+    color: #989DA6; 
+    font-size: 14px;
+    float: right;
+}
+.tLinks {
+   text-decoration: none;
+}
+.tHandle:hover {
+    text-decoration: underline;
+    text-decoration-color: #989DA6;
+}
+
+
 /* Reddit Stuff */
 .subreddit {
     font-weight: bold;

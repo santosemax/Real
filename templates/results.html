@@ -59,6 +59,14 @@
                 <h3>Popular tweets about your search:</h3>
 
                 {{range $t := .PageTwitterResults}}
+                <div>
+                    <a href={{ $t.URL }} class="tLinks">
+                        <span class="tUsername">{{ $t.Handle }}</span>
+                        <span class="tHandle">@{{ $t.Username }}</span>
+                    </a>
+                </div>
+                    <p>{{ $t.DatePub }}</p>
+
                     <p>{{ $t.Text }}</p>
                 
                 {{end}}
