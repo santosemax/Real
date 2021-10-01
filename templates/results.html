@@ -29,12 +29,15 @@
     <br>
     <br>
 
-    <h3>Here are your results sorted by relevance:</h3>
-
     <!-- Results -->
     <div class="resultsAll">
 
         <div class="results">
+
+            <h3>Here are your results sorted by relevance:</h3>
+            
+            <br>
+
             {{range $n := .PageRedditResults}}
                 <a href=https://www.reddit.com{{ $n.ResultPermalink }}>{{ $n.ResultTitle }}</a>
                 <p class="subreddit">/r/{{ .ResultSub }}</p>
@@ -70,7 +73,6 @@
 </body>
 
 <script>
-
 
 </script>
 

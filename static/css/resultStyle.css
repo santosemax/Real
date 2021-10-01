@@ -85,9 +85,10 @@
     width: 40%;
     margin-right: 50px;
     border-radius: 15px;
-    height: 400px;
-    box-shadow: 0.0rem 0.0rem 0.2rem #A4ABB3;
+    height: 500px;
+    box-shadow: 0.0rem 0.0rem 0.2rem #30A8FB;
     overflow-y: auto;
+    overscroll-behavior: contain;
 }
 
 .twitterBody {
