@@ -19,10 +19,15 @@ c = conn.cursor()
 search = ""
 for (query,) in c.execute("SELECT query FROM queryQ"):
     search = f"{query} -filter:retweets"
-postLimit = 50 # How many results should the API search for?
-tweets = tweepy.Cursor(api.search_tweets, q=search, lang='en', result_type='popular', include_entities=True, tweet_mode='extended').items(20)
-index = 0
-limit = 10 # How many rows should you add?
+tweets = tweepy.Cursor(
+    api.search_tweets, 
+    q=search, 
+    lang='en', 
+    result_type='mixed', 
+    include_entities=True, 
+    tweet_mode='extended').items(50)
+
+index, limit = 0, 25 # How many rows should you add?
 results = {}
 for tweet in tweets:
     results[tweet.user.name] = tweet.full_text

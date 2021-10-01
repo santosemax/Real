@@ -65,15 +65,37 @@
     text-decoration: none;
 }
 
-.results {
-    position: relative;
+.resultsAll {
+    display: flex;
     font-family: "Georgia";
     padding-left: 105px;
-    display: inline-block;
-    max-width: 750px;
+    /*max-width: 750px;*/
     word-wrap: normal;
 }
 
+
+.results {
+    flex: 1;
+    width: 100%;
+    padding-right: 50px;
+}
+
+/* TWITTER STUFF */
+.tweets {
+    width: 40%;
+    margin-right: 50px;
+    border-radius: 15px;
+    height: 400px;
+    box-shadow: 0.0rem 0.0rem 0.2rem #A4ABB3;
+    overflow-y: auto;
+}
+
+.twitterBody {
+    padding: 15px;
+}
+
+
+/* Reddit Stuff */
 .subreddit {
     font-weight: bold;
     color: #FF4500;

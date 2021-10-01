@@ -29,12 +29,12 @@
     <br>
     <br>
 
+    <h3>Here are your results sorted by relevance:</h3>
+
     <!-- Results -->
-    <div class="results">
+    <div class="resultsAll">
 
-        <h3>Here are your results sorted by relevance:</h3>
-
-        <div>
+        <div class="results">
             {{range $n := .PageRedditResults}}
                 <a href=https://www.reddit.com{{ $n.ResultPermalink }}>{{ $n.ResultTitle }}</a>
                 <p class="subreddit">/r/{{ .ResultSub }}</p>
@@ -47,24 +47,25 @@
             {{ end }}
         </div>
 
-    </div>
+        <!-- Twitter Results -->
+        <div class="tweets">
 
-
-    <!-- Twitter Results -->
-    <div class="tweets">
-
-        <h3>Popular tweets about your search:</h3>
-        
-        <div>
-            {{range $t := .PageTwitterResults}}
-                <p>{{ $t.Text }}</p>
             
-            {{end}}
+            <div class="twitterBody">
+            
+                <h3>Popular tweets about your search:</h3>
+
+                {{range $t := .PageTwitterResults}}
+                    <p>{{ $t.Text }}</p>
+                
+                {{end}}
+            </div>
+
         </div>
 
-
-
     </div>
+
+
 
 </body>
 
