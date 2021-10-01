@@ -42,7 +42,7 @@
                 <a href=https://www.reddit.com{{ $n.ResultPermalink }}>{{ $n.ResultTitle }}</a>
                 <p class="subreddit">/r/{{ .ResultSub }}</p>
                 {{if eq $n.ResultBody "noCONTENT"}}
-                    <a href={{ $n.ResultURL }}>Video/Image</a>
+                    <a href={{ $n.ResultURL }} class="contentButton" target="_blank">Media</a>
                 {{else}}
                     {{ $n.ResultBody }}
                 {{end}}
@@ -53,30 +53,37 @@
         <!-- Twitter Results -->
         <div class="tweets">
 
-            
-            <div class="twitterBody">
-            
-                <h3>Popular tweets about your search:</h3>
-
-                {{range $t := .PageTwitterResults}}
-                <div>
-                    <a href={{ $t.URL }} class="tLinks">
-                        <span class="tUsername">{{ $t.Handle }}</span>
-                        <span class="tHandle">@{{ $t.Username }}</span>
-                    </a>
-                </div>
-                    <p>{{ $t.DatePub }}</p>
-
-                    <p>{{ $t.Text }}</p>
+                <div class="twitterBody">
                 
-                {{end}}
-            </div>
+                    <h3>Popular tweets about your search:</h3>
+
+                    {{range $t := .PageTwitterResults}}
+                    <div>
+                        <a href={{ $t.URL }} class="tLinks" target="_blank">
+                            <span class="tUsername">{{ $t.Handle }}</span>
+                            <span class=tDate>{{$t.DatePub}}</span>
+                            <span class="tHandle">@{{ $t.Username }}</span>
+                        </a>
+                    </div>
+
+
+                        <p>{{ $t.Text }}</p>
+                    
+                        <!--  Now retweets and likes -->
+                        <div class="tAttributes">
+                            <img src="static/images/retweet.png" height="20px" width="25px">
+                            <span class="tRetweets">{{ $t.Retweets }}</span>
+                            <img src="static/images/like.png" height="22.5px" width="25px">
+                            <span class="tLikes">{{ $t.Likes }}</span>
+                        </div>
+                    {{else}}
+                    <span>No new tweets found about your subject :(</span>
+                    {{end}}
+                </div>
 
         </div>
 
     </div>
-
-
 
 </body>
 

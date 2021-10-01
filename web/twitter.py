@@ -23,7 +23,7 @@ tweets = tweepy.Cursor(
     api.search_tweets, 
     q=search, 
     lang='en', 
-    result_type='mixed', 
+    result_type='popular', 
     include_entities=True, 
     tweet_mode='extended').items(50)
 
@@ -33,12 +33,15 @@ for tweet in tweets:
     results[tweet.user.name] = tweet.full_text
     # Construct URL
     url = f"https://twitter.com/{tweet.user.screen_name}/status/{tweet.id}"
+    # Construct Date of each tweet
+    date = str(tweet.created_at)
+    dateFmt = f"{date[5:7]}/{date[8:10]}"
     if tweet.user.followers_count >= 30 and tweet.user.protected == False:
         if tweet.full_text == "":
             c.execute("INSERT INTO twitterQ VALUES (?, ?, ?, ?, ?, ?, ?)", (
                 tweet.user.screen_name,
                 tweet.user.name,
-                tweet.created_at,
+                dateFmt,
                 "MEDIACONTENTONLY",
                 tweet.retweet_count,
                 tweet.favorite_count,
@@ -48,7 +51,7 @@ for tweet in tweets:
              c.execute("INSERT INTO twitterQ VALUES (?, ?, ?, ?, ?, ?, ?)", (
                 tweet.user.screen_name,
                 tweet.user.name,
-                tweet.created_at,
+                dateFmt,
                 re.sub(r'https://t.co/\w{10}', '', tweet.full_text),
                 tweet.retweet_count,
                 tweet.favorite_count,
