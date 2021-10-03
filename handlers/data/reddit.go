@@ -18,7 +18,7 @@ type RedditResults struct {
 }
 
 func RedditData(db *sql.DB) []RedditResults {
-	// Initialize stuff here
+
 	var results []RedditResults
 
 	// START HERE

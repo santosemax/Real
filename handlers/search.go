@@ -15,6 +15,7 @@ type Page struct {
 	Title              string
 	PageRedditResults  []data.RedditResults
 	PageTwitterResults []data.TwitterResults
+	PageStackResults   []data.StackResults
 }
 
 // handles search results
@@ -60,12 +61,12 @@ func SearchHandler(w http.ResponseWriter, r *http.Request) {
 			checkErr(err)
 			statement.Close()
 		}
-		// SEARCH LOGIC STARTS HERE (Python->DB->GO)
 
 		// Fill out Page (using 'data' handlers)
 		page.Title = val
 		page.PageRedditResults = data.RedditData(db) // Call reddit data here????
 		page.PageTwitterResults = data.TwitterData(db)
+		page.PageStackResults = data.StackData(db)
 
 		// Delete Rows and close db
 		db.Exec("DELETE FROM redditQ")
