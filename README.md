@@ -5,7 +5,7 @@ A search engine made to return only the results of real people.
 
 Checklist:
 - [x] = Backend (written in Go) for the web app
-- [ ] = Frontend using pure html/css/js (Not a web developer)
+- [x] = Frontend using pure html/css/js (Not a web developer)
 - [x] = Web Scraping using Python3
 - [x] = Storing Web Scraping using SQLite
 - [x] = Implement scraping into webpages using Go
