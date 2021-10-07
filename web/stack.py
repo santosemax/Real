@@ -2,7 +2,7 @@
 from stackapi import StackAPI
 from datetime import datetime
 
-query = "How to include python in golang"
+query = "Black screen after install ubuntu"
 
 SITE = StackAPI('stackoverflow')
 
@@ -11,6 +11,6 @@ SITE = StackAPI('stackoverflow')
 #SITE.max_pages = 10
 
 # Get search 
-questions = SITE.fetch('similar', title='test')
+questions = SITE.fetch('search/advanced', order='desc', sort='relevance', q=query, site='stackoverflow')
 
 print(questions)
