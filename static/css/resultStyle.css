@@ -14,7 +14,7 @@
     width: 100%;
     padding: 0px;
     border-radius: 5px;
-    box-shadow: 0rem 0rem 0.5rem #FF7B55;
+    box-shadow: 0rem 0rem 0.3rem #30A8FB;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -31,7 +31,7 @@
 }
 
 .button {
-    background: #5665BC;
+    background: #35363A;
     color: #5665BC;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;

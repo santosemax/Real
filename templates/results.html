@@ -14,7 +14,7 @@
 
     <!-- Logo -->
     <div class="logo">
-        <a class="logoLink" href=./templates/index.html>real<span style=color:#FF7B55>.</span></a>
+        <a class="logoLink" href=./templates/index.html>real<span style=color:#30A8FB>.</span></a>
     </div>
 
 
@@ -44,7 +44,7 @@
                 {{if eq $n.ResultBody "noCONTENT"}}
                     <a href={{ $n.ResultURL }} class="contentButton" target="_blank">Media</a>
                 {{else}}
-                    {{ $n.ResultBody }}
+                    {{ $n.ResultSummary }}
                 {{end}}
                 <p>------------------------------</p>
             {{ end }}

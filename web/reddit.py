@@ -7,7 +7,8 @@ from os import path
 Config = configparser.ConfigParser()
 Config.read("./botConfigs/redditBot.ini")
 client = Config['reddit']['client']
-secret = Config['reddit']['key']
+secret = Config['reddit']['secret']
+agent = Config['reddit']['agent']
 
 reddit = praw.Reddit(
     client_id=client,
@@ -22,13 +23,14 @@ c = conn.cursor()
 search = ""
 for (query,) in c.execute("SELECT query FROM queryQ"):
     search = query
-postLimit = 50 # How many results should the API search for?
+postLimit = 30 # How many results should the API search for?
 search_posts = reddit.subreddit('all').search(search, limit=postLimit)
 index = 0
-limit = 10 # How many rows should you add?
+limit = 30 # How many rows should you add?
 results = {}
 for post in search_posts:
     results[post.title] = post.selftext
+
     if post.over_18 != True:
         if post.selftext == "":
             c.execute("INSERT INTO redditQ VALUES (?, ?, ?, ?, ?)", (

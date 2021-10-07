@@ -2,9 +2,13 @@ package data
 
 import (
 	"database/sql"
+	"fmt"
 	"log"
 	"os"
 	"os/exec"
+	"strings"
+
+	"github.com/JesusIslam/tldr"
 )
 
 // Storing Reddit
@@ -14,6 +18,7 @@ type RedditResults struct {
 	ResultURL       string
 	ResultSub       string
 	ResultPermalink string
+	ResultSummary   string
 	hasContent      bool
 }
 
@@ -38,6 +43,7 @@ func RedditData(db *sql.DB) []RedditResults {
 	var subreddit string
 	var permalink string
 	var content bool
+	var summarizedList []string // not apart of db
 
 	// Read the Rows
 	for rows.Next() {
@@ -52,6 +58,14 @@ func RedditData(db *sql.DB) []RedditResults {
 			content = false
 		}
 
+		// Make summary of body
+		intoSentences := 3
+		bag := tldr.New()
+		summarizedList, _ = bag.Summarize(body, intoSentences)
+		fmt.Println(summarizedList)
+		// Convert from list to string
+		summarizedBody := strings.Join(summarizedList, " ")
+
 		results = append(results,
 			RedditResults{
 				ResultTitle:     title,
@@ -59,6 +73,7 @@ func RedditData(db *sql.DB) []RedditResults {
 				ResultURL:       url,
 				ResultSub:       subreddit,
 				ResultPermalink: permalink,
+				ResultSummary:   summarizedBody,
 				hasContent:      content,
 			})
 

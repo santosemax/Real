@@ -66,7 +66,6 @@ func SearchHandler(w http.ResponseWriter, r *http.Request) {
 		page.Title = val
 		page.PageRedditResults = data.RedditData(db) // Call reddit data here????
 		page.PageTwitterResults = data.TwitterData(db)
-		page.PageStackResults = data.StackData(db)
 
 		// Delete Rows and close db
 		db.Exec("DELETE FROM redditQ")
