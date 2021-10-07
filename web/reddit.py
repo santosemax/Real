@@ -7,8 +7,7 @@ from os import path
 Config = configparser.ConfigParser()
 Config.read("./botConfigs/redditBot.ini")
 client = Config['reddit']['client']
-secret = Config['reddit']['secret']
-agent = Config['reddit']['agent']
+secret = Config['reddit']['key']
 
 reddit = praw.Reddit(
     client_id=client,
